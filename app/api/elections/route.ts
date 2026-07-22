@@ -73,6 +73,7 @@ export async function POST(req: Request) {
   const {
     title,
     position,
+    description,
     candidateNames,
     eligibleVoters,
     rollNumberFrom,
@@ -98,6 +99,9 @@ export async function POST(req: Request) {
   const doc = {
     title: title.trim(),
     position: position.trim(),
+    ...(typeof description === "string" && description.trim()
+      ? { description: description.trim() }
+      : {}),
     candidates: candidateNames.map((name: string, i: number) => ({
       id: `c-${i}`,
       name: String(name).trim(),

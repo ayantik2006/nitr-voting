@@ -9,6 +9,7 @@ export interface ElectionDoc {
   _id: string;
   title: string;
   position: string;
+  description?: string;
   candidates: Candidate[];
   eligibleVoters: number;
   rollNumberFrom?: string;

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Check } from "lucide-react";
 import { toast } from "sonner";
 import { StatusBadge } from "@/components/dashboard/status-badge";
+import { ElectionDetailsDialog } from "@/components/dashboard/election-details-dialog";
 import { formatDeadline } from "@/lib/format";
 import { isRollNumberInRange } from "@/lib/roll-number";
 import type { ElectionWithStats } from "@/lib/types";
@@ -20,6 +21,7 @@ export function ElectionCard({
   const [voting, setVoting] = useState(false);
   const [selecting, setSelecting] = useState(false);
   const [candidateId, setCandidateId] = useState<string | null>(null);
+  const [showDetails, setShowDetails] = useState(false);
 
   const eligible = isRollNumberInRange(
     rollNumber,
@@ -42,6 +44,7 @@ export function ElectionCard({
   }
 
   return (
+    <>
     <div className="flex flex-col rounded-xl border border-white/8 bg-neutral-900/40 p-5 transition-all duration-150 hover:-translate-y-0.5 hover:border-white/15">
       <div className="flex items-start justify-between gap-3">
         <div>
@@ -75,6 +78,14 @@ export function ElectionCard({
           </div>
         )}
       </div>
+
+      <button
+        type="button"
+        onClick={() => setShowDetails(true)}
+        className="mt-3 self-start text-[13px] text-neutral-400 underline-offset-2 hover:text-neutral-200 hover:underline"
+      >
+        View Details
+      </button>
 
       {election.status === "open" &&
         (election.hasVoted ? (
@@ -131,5 +142,9 @@ export function ElectionCard({
           </button>
         ))}
     </div>
+    {showDetails && (
+      <ElectionDetailsDialog election={election} onClose={() => setShowDetails(false)} />
+    )}
+    </>
   );
 }

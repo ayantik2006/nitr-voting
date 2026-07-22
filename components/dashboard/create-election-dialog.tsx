@@ -14,6 +14,7 @@ export function CreateElectionDialog({
 }) {
   const [title, setTitle] = useState("");
   const [position, setPosition] = useState("");
+  const [description, setDescription] = useState("");
   const [eligibleVoters, setEligibleVoters] = useState("");
   const [rollNumberFrom, setRollNumberFrom] = useState("");
   const [rollNumberTo, setRollNumberTo] = useState("");
@@ -54,6 +55,7 @@ export function CreateElectionDialog({
         body: JSON.stringify({
           title,
           position,
+          description: description.trim(),
           candidateNames,
           eligibleVoters: Number(eligibleVoters) || 0,
           rollNumberFrom: rollNumberFrom.trim(),
@@ -108,6 +110,20 @@ export function CreateElectionDialog({
               onChange={(e) => setPosition(e.target.value)}
               className="mt-1.5 w-full rounded-lg border border-white/10 bg-white/3 px-3 py-2 text-[14px] text-neutral-100 outline-none focus:border-white/25"
               placeholder="Class Representative"
+            />
+          </div>
+
+          <div>
+            <label className="text-[13px] text-neutral-400">
+              Description{" "}
+              <span className="text-neutral-600">(optional)</span>
+            </label>
+            <textarea
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              rows={3}
+              className="mt-1.5 w-full resize-none rounded-lg border border-white/10 bg-white/3 px-3 py-2 text-[14px] text-neutral-100 outline-none focus:border-white/25"
+              placeholder="Election body, eligibility rules, or other details voters should know"
             />
           </div>
 

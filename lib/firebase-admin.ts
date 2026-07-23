@@ -11,6 +11,7 @@ export async function verifyRequest(req: Request) {
   const authHeader = req.headers.get("authorization") ?? "";
   const token = authHeader.startsWith("Bearer ") ? authHeader.slice(7) : null;
   if (!token) return null;
+
   try {
     const decoded = await getAuth(getAdminApp()).verifyIdToken(token);
     if (!decoded.email?.endsWith("@nitrkl.ac.in")) return null;

@@ -1,20 +1,27 @@
 import { MongoClient, type Db } from "mongodb";
 
-const uri = process.env.MONGO_URI;
-if (!uri) throw new Error("Missing MONGO_URI env var");
-
 declare global {
   var _mongoClientPromise: Promise<MongoClient> | undefined;
 }
 
-const client = new MongoClient(uri);
-const clientPromise =
-  global._mongoClientPromise ?? (global._mongoClientPromise = client.connect());
+let clientPromise: Promise<MongoClient> | null = null;
+
+function getClientPromise(): Promise<MongoClient> {
+  if (clientPromise) return clientPromise;
+  
+  const uri = process.env.MONGO_URI;
+  if (!uri) throw new Error("Missing MONGO_URI env var");
+  
+  const client = new MongoClient(uri);
+  clientPromise =
+    global._mongoClientPromise ?? (global._mongoClientPromise = client.connect());
+  return clientPromise;
+}
 
 let indexesEnsured: Promise<unknown> | undefined;
 
 export async function getDb(): Promise<Db> {
-  const c = await clientPromise;
+  const c = await getClientPromise();
   const db = c.db();
   indexesEnsured ??= db
     .collection("votes")

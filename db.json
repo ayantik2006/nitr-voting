@@ -1,0 +1,89 @@
+{
+  "elections": [
+    {
+      "_id": "election-1st-cr",
+      "title": "Class Representative — 1st Position",
+      "position": "1st CR (Primary Representative)",
+      "description": "Vote for your choice for the 1st Class Representative of our class.",
+      "candidates": [
+        {
+          "id": "c-0",
+          "name": "Anibesh",
+          "avatar": "/nominees/anibesh.jpg"
+        },
+        {
+          "id": "c-1",
+          "name": "Shreyash",
+          "avatar": "/nominees/shreyash.jpg"
+        },
+        {
+          "id": "c-2",
+          "name": "Tapas",
+          "avatar": "/nominees/tapas.jpg"
+        },
+        {
+          "id": "c-3",
+          "name": "Ashwani",
+          "avatar": "/nominees/ashwani.jpg"
+        }
+      ],
+      "eligibleVoters": 75,
+      "rollNumberFrom": "125CE0001",
+      "rollNumberTo": "125CE0075",
+      "startDate": "2026-07-22T21:30:00.000Z",
+      "endDate": "2026-07-23T12:30:00.000Z",
+      "createdBy: ": "mock-admin-uid",
+      "createdByName": "Election Administrator",
+      "createdAt": "2026-07-23T08:30:00.000Z"
+    },
+    {
+      "_id": "election-2nd-cr",
+      "title": "Class Representative — 2nd Position",
+      "position": "2nd CR (Secondary Representative)",
+      "description": "Vote for your choice for the 2nd Class Representative of our class.",
+      "candidates": [
+        {
+          "id": "c-0",
+          "name": "Anibesh",
+          "avatar": "/nominees/anibesh.jpg"
+        },
+        {
+          "id": "c-1",
+          "name": "Shreyash",
+          "avatar": "/nominees/shreyash.jpg"
+        },
+        {
+          "id": "c-2",
+          "name": "Tapas",
+          "avatar": "/nominees/tapas.jpg"
+        },
+        {
+          "id": "c-3",
+          "name": "Ashwani",
+          "avatar": "/nominees/ashwani.jpg"
+        }
+      ],
+      "eligibleVoters": 75,
+      "rollNumberFrom": "125CE0001",
+      "rollNumberTo": "125CE0075",
+      "startDate": "2026-07-22T21:30:00.000Z",
+      "endDate": "2026-07-23T12:30:00.000Z",
+      "createdBy: ": "mock-admin-uid",
+      "createdByName": "Election Administrator",
+      "createdAt": "2026-07-23T08:30:00.000Z"
+    }
+  ],
+  "votes": [],
+  "profiles": [
+    {
+      "uid": "mock-admin-uid",
+      "email": "admin@nitrkl.ac.in",
+      "displayName: ": "Election Admin",
+      "rollNumber": "ADMIN01",
+      "department": "Computer Science",
+      "year": "3rd Year",
+      "role": "Admin"
+    }
+  ],
+  "activity": []
+}

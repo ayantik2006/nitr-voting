@@ -3,6 +3,7 @@ export type ElectionStatus = "open" | "upcoming" | "closed";
 export interface Candidate {
   id: string;
   name: string;
+  avatar?: string;
 }
 
 export interface ElectionDoc {

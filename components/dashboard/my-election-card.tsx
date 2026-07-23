@@ -41,73 +41,75 @@ export function MyElectionCard({
 
   return (
     <>
-    <div className="flex flex-col rounded-xl border border-white/8 bg-neutral-900/40 p-5 transition-all duration-150 hover:-translate-y-0.5 hover:border-white/15">
-      <div className="flex items-start justify-between gap-3">
-        <h3 className="text-[16px] font-semibold leading-snug text-neutral-100">
-          {election.title}
-        </h3>
-        <StatusBadge status={election.status} />
-      </div>
-      <p className="mt-0.5 text-[13px] text-neutral-500">
-        Created {formatDate(election.createdAt)}
-      </p>
-
-      {election.description && (
-        <p className="mt-2 text-[13px] whitespace-pre-wrap text-neutral-400">
-          {election.description}
-        </p>
-      )}
-
-      <div className="mt-4 flex items-center gap-4 text-[13px] text-neutral-500">
-        <span>
-          <span className="text-neutral-300">{election.candidates.length}</span>{" "}
-          candidates
-        </span>
-        <span>
-          <span className="text-neutral-300">{election.votesCast}</span> votes
-        </span>
-      </div>
-
-      {showResults && (
-        <div className="mt-4 space-y-1.5 border-t border-white/8 pt-3">
-          {election.candidates.map((c) => (
-            <div
-              key={c.id}
-              className="flex items-center justify-between text-[13px] text-neutral-400"
-            >
-              <span>{c.name}</span>
-              <span className="text-neutral-300">
-                {election.candidateVotes[c.id] ?? 0}
-              </span>
-            </div>
-          ))}
+    <div className="glass-card rounded-2xl p-5 hover:border-slate-300 transition-all duration-150 shadow-2xs flex flex-col justify-between">
+      <div>
+        <div className="flex items-start justify-between gap-3">
+          <h3 className="text-[16px] font-bold leading-snug text-slate-900">
+            {election.title}
+          </h3>
+          <StatusBadge status={election.status} />
         </div>
-      )}
+        <p className="mt-1 text-[12px] font-medium text-slate-400">
+          Created {formatDate(election.createdAt)}
+        </p>
 
-      <div className="mt-4 flex items-center gap-4 border-t border-white/8 pt-3 text-[13px]">
+        {election.description && (
+          <p className="mt-3 text-[13px] whitespace-pre-wrap text-slate-600">
+            {election.description}
+          </p>
+        )}
+
+        <div className="mt-4 flex items-center gap-4 text-[13px] font-medium text-slate-500 bg-slate-50 border border-slate-200/50 p-2.5 rounded-xl">
+          <span>
+            Candidates: <span className="font-bold text-slate-800">{election.candidates.length}</span>
+          </span>
+          <span className="h-3 w-px bg-slate-200" />
+          <span>
+            Votes: <span className="font-bold text-slate-800">{election.votesCast}</span>
+          </span>
+        </div>
+
+        {showResults && (
+          <div className="mt-4 space-y-2 border-t border-slate-200/60 pt-3">
+            {election.candidates.map((c) => (
+              <div
+                key={c.id}
+                className="flex items-center justify-between text-[13px] text-slate-600 bg-white border border-slate-100 p-2 rounded-lg"
+              >
+                <span className="font-semibold">{c.name}</span>
+                <span className="font-bold text-slate-800">
+                  {election.candidateVotes[c.id] ?? 0} votes
+                </span>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <div className="mt-5 flex items-center gap-4 border-t border-slate-200/60 pt-3 text-[13px]">
         <button
           type="button"
           onClick={() => setShowDetails(true)}
-          className="text-neutral-400 transition-colors hover:text-neutral-200"
+          className="text-slate-500 font-bold transition-colors hover:text-slate-800"
         >
-          View Details
+          Details
         </button>
         {election.status === "closed" ? (
           <button
             type="button"
             onClick={() => setShowResults((s) => !s)}
-            className="text-neutral-400 transition-colors hover:text-neutral-200"
+            className="text-indigo-600 font-bold transition-colors hover:text-indigo-800"
           >
-            {showResults ? "Hide Results" : "Results"}
+            {showResults ? "Hide Results" : "Show Results"}
           </button>
         ) : (
-          <span className="text-neutral-600">Results after voting closes</span>
+          <span className="text-slate-400 font-semibold">Results after closing</span>
         )}
         <button
           type="button"
           onClick={handleDelete}
           disabled={deleting}
-          className="text-red-400/80 transition-colors hover:text-red-400 disabled:opacity-50"
+          className="ml-auto text-red-600 font-bold transition-colors hover:text-red-800 disabled:opacity-50"
         >
           {deleting ? "Deleting…" : "Delete"}
         </button>

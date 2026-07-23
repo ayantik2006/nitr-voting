@@ -21,7 +21,11 @@ async function withStats(
       ]);
 
       let candidateVotes: Record<string, number> = {};
-      if (status === "closed") {
+      const now = Date.now();
+      const end = new Date(election.endDate).getTime();
+      const resultsDeclared = now >= end + 10 * 60 * 1000;
+
+      if (status === "closed" && resultsDeclared) {
         const tally = await votes
           .aggregate<{ _id: string; count: number }>([
             { $match: { electionId: election._id } },
